@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beansProjectDescription>
+	<configExtensions>
+		<configExtension>xml</configExtension>
+	</configExtensions>
+	<configs>
+		<config>src/main/resources/appCtx/banking-hibernate-repositories.xml</config>
+		<config>src/main/resources/appCtx/banking-hsqldb-session-factory.xml</config>
+		<config>src/main/resources/appCtx/banking-local-transaction.xml</config>
+		<config>src/main/resources/appCtx/banking-service.xml</config>
+		<config>src/main/resources/appCtx/hsqldb-datasource.xml</config>
+	</configs>
+	<configSets>
+		<configSet>
+			<name>all</name>
+			<allowBeanDefinitionOverriding>false</allowBeanDefinitionOverriding>
+			<incomplete>false</incomplete>
+			<configs>
+				<config>src/main/resources/appCtx/banking-hibernate-repositories.xml</config>
+				<config>src/main/resources/appCtx/banking-hsqldb-session-factory.xml</config>
+				<config>src/main/resources/appCtx/banking-local-transaction.xml</config>
+				<config>src/main/resources/appCtx/banking-service.xml</config>
+				<config>src/main/resources/appCtx/hsqldb-datasource.xml</config>
+			</configs>
+		</configSet>
+	</configSets>
+</beansProjectDescription>

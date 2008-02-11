@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:aop="http://www.springframework.org/schema/aop"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+       http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.0.xsd">
+
+
+    <aop:aspectj-autoproxy />
+
+    <bean id="transactionManagementAspect"
+        class="net.chrisrichardson.bankingExample.infrastructure.aspects.TransactionManagementAspect">
+        <constructor-arg ref="transactionManager" />
+        <property name="order" value="100" />
+    </bean>
+
+    <bean id="loggingAspect"
+        class="net.chrisrichardson.bankingExample.infrastructure.aspects.LoggingAspect">
+        <property name="order" value="10" />
+
+    </bean>
+
+    <bean id="transactionRetryAspect"
+        class="net.chrisrichardson.bankingExample.infrastructure.aspects.TransactionRetryAspect">
+        <property name="order" value="50" />
+    </bean>
+
+    <bean id="securityAspect"
+        class="net.chrisrichardson.bankingExample.infrastructure.aspects.SecurityAspect">
+        <constructor-arg ref="bankingSecurityManagerWrapper" />
+        <property name="order" value="70" />
+    </bean>
+
+    <bean id="auditingAspect"
+        class="net.chrisrichardson.bankingExample.infrastructure.aspects.AuditingAspect">
+        <constructor-arg ref="auditingManager" />
+        <property name="order" value="75" />
+    </bean>
+
+    <bean id="accountService"
+        class="net.chrisrichardson.bankingExample.domain.AccountServiceProceduralImpl">
+        <constructor-arg ref="accountDao" />
+        <constructor-arg ref="bankingTransactionDao" />
+    </bean>
+
+    <bean id="accountDao"
+        class="net.chrisrichardson.bankingExample.domain.jdbc.JdbcAccountDao">
+        <constructor-arg ref="jdbcConnectionManager" />
+
+    </bean>
+
+    <bean id="bankingTransactionDao"
+        class="net.chrisrichardson.bankingExample.domain.jdbc.JdbcBankingTransactionDao" />
+
+    <bean id="transactionManager"
+        class="net.chrisrichardson.bankingExample.infrastructure.TransactionManager">
+        <constructor-arg ref="jdbcConnectionManager" />
+    </bean>
+
+    <bean id="auditingManager"
+        class="net.chrisrichardson.bankingExample.infrastructure.AuditingManager" />
+
+    <bean id="bankingSecurityManagerWrapper"
+        class="net.chrisrichardson.bankingExample.infrastructure.BankingSecurityManagerWrapper" />
+
+    <bean id="jdbcConnectionManager"
+        class="net.chrisrichardson.bankingExample.infrastructure.JdbcConnectionManager">
+        <constructor-arg ref="dataSource" />
+    </bean>
+
+    <bean id="dataSource" lazy-init="true"
+        class="org.apache.commons.dbcp.BasicDataSource">
+        <property name="driverClassName">
+            <value>org.hsqldb.jdbcDriver</value>
+        </property>
+        <property name="url">
+            <value>jdbc:hsqldb:mem:testdb</value>
+        </property>
+        <property name="username">
+            <value>sa</value>
+        </property>
+        <property name="password">
+            <value></value>
+        </property>
+    </bean>
+
+</beans>

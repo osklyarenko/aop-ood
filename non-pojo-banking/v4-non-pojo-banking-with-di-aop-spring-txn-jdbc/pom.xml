@@ -1,0 +1,123 @@
+<?xml version="1.0"?>
+<project>
+	<parent>
+		<artifactId>non-pojo-banking</artifactId>
+		<groupId>net.chrisrichardson</groupId>
+		<version>1.0-SNAPSHOT</version>
+        <relativePath>../pom.xml</relativePath>
+	</parent>
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>net.chrisrichardson</groupId>
+	<artifactId>v4-non-pojo-banking-with-di-aop-spring-txn-jdbc</artifactId>
+    <name>V4 POJO banking with dependency injection, aop, Spring transactions and Spring JDBC</name>
+	<version>1.0-SNAPSHOT</version>
+	<url>http://www.pojosinaction.com</url>
+	<dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>3.8.1</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.jmock</groupId>
+			<artifactId>jmock-junit3</artifactId>
+			<version>2.1.0</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.jmock</groupId>
+			<artifactId>jmock-legacy</artifactId>
+			<version>2.1.0</version>
+			<scope>test</scope>
+			<exclusions>
+				<exclusion>
+					<groupId>cglib</groupId>
+					<artifactId>cglib-nodep</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+
+		<dependency>
+			<groupId>net.chrisrichardson</groupId>
+			<artifactId>ormunit-hibernate</artifactId>
+			<version>1.0-SNAPSHOT</version>
+			<scope>test</scope>
+
+			<exclusions>
+				<exclusion>
+					<artifactId>swarmcache</artifactId>
+					<groupId>swarmcache</groupId>
+				</exclusion>
+			</exclusions>
+
+		</dependency>
+
+		<dependency>
+			<groupId>hsqldb</groupId>
+			<artifactId>hsqldb</artifactId>
+			<version>1.7.2.2</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>aspectj</groupId>
+			<artifactId>aspectjlib</artifactId>
+			<version>1.5.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>aspectj</groupId>
+			<artifactId>aspectjweaver</artifactId>
+			<version>1.5.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring</artifactId>
+			<version>2.0.4</version>
+		</dependency>
+
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>1.2.9</version>
+		</dependency>
+
+		<dependency>
+			<groupId>commons-dbcp</groupId>
+			<artifactId>commons-dbcp</artifactId>
+			<version>1.2.1</version>
+			<exclusions>
+				<exclusion>
+					<groupId>javax.sql</groupId>
+					<artifactId>jdbc-stdext</artifactId>
+				</exclusion>
+				<exclusion>
+					<artifactId>jdbc</artifactId>
+					<groupId>jdbc</groupId>
+				</exclusion>
+				<exclusion>
+
+					<artifactId>xerces</artifactId>
+
+					<groupId>xerces</groupId>
+
+				</exclusion>
+
+				<exclusion>
+
+					<artifactId>xml-apis</artifactId>
+
+					<groupId>xml-apis</groupId>
+
+				</exclusion>
+
+			</exclusions>
+		</dependency>
+
+	</dependencies>
+</project>
