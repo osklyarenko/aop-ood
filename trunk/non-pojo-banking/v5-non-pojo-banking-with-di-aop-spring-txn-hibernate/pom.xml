@@ -45,16 +45,7 @@
 		<dependency>
 			<groupId>net.chrisrichardson</groupId>
 			<artifactId>ormunit-hibernate</artifactId>
-			<version>1.0-SNAPSHOT</version>
 			<scope>test</scope>
-
-			<exclusions>
-				<exclusion>
-					<artifactId>swarmcache</artifactId>
-					<groupId>swarmcache</groupId>
-				</exclusion>
-			</exclusions>
-
 		</dependency>
 
 		<dependency>
@@ -67,19 +58,16 @@
 		<dependency>
 			<groupId>aspectj</groupId>
 			<artifactId>aspectjlib</artifactId>
-			<version>1.5.0</version>
 		</dependency>
 
 		<dependency>
 			<groupId>aspectj</groupId>
 			<artifactId>aspectjweaver</artifactId>
-			<version>1.5.0</version>
 		</dependency>
 
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring</artifactId>
-			<version>2.0.4</version>
 		</dependency>
 
 		<dependency>
