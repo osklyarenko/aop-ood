@@ -42,9 +42,12 @@ public class MoneyTransferServiceImpl implements MoneyTransferService {
 		bankingTransactionRepository.addTransaction(txn);
 		return txn;
 	}
+  public void create(Account account) {
+    accountRepository.addAccount(account);
+  }
 
-	public List<Account> findAccounts() {
-		return accountRepository.findAccounts();
-	}
-
+  public List<Account> findAccounts() {
+    return accountRepository.findAccounts();
+  }
+  
 }
