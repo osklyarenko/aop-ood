@@ -25,6 +25,7 @@
         <module>domain-model-banking</module>
         <module>procedural-banking</module>
         <module>non-pojo-banking</module>
+        <module>spring-mvc-jpa-banking</module>
     </modules>
 
     <build>
