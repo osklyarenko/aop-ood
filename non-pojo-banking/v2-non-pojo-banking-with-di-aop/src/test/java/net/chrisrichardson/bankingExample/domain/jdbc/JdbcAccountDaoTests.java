@@ -18,23 +18,18 @@
 
 package net.chrisrichardson.bankingExample.domain.jdbc;
 
-import junit.framework.TestCase;
 import net.chrisrichardson.bankingExample.domain.Account;
 import net.chrisrichardson.bankingExample.domain.AccountMother;
 
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit38.AbstractJUnit38SpringContextTests;
 
-public class JdbcAccountDaoTests extends TestCase {
+@ContextConfiguration("/appCtx/*.xml")
+public class JdbcAccountDaoTests extends AbstractJUnit38SpringContextTests {
 
+  @Autowired
   private JdbcAccountDao dao;
-
-  @Override
-  protected void setUp() throws Exception {
-    ApplicationContext ctx = new ClassPathXmlApplicationContext(
-        "appCtx/banking-service.xml");
-    this.dao = (JdbcAccountDao) ctx.getBean("accountDao");
-  }
 
   public void test() throws Exception {
 

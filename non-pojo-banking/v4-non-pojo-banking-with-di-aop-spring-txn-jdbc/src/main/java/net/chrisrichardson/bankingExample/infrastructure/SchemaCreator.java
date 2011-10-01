@@ -1,7 +1,12 @@
 package net.chrisrichardson.bankingExample.infrastructure;
 
-import org.springframework.jdbc.core.JdbcTemplate;
+import javax.annotation.PostConstruct;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Component;
+
+@Component
 public class SchemaCreator {
 
   private static String[] ddl = {
@@ -12,8 +17,13 @@ public class SchemaCreator {
 
   private final JdbcTemplate jdbcTemplate;
 
+  @Autowired
   public SchemaCreator(JdbcTemplate jdbcTemplate) {
     this.jdbcTemplate = jdbcTemplate;
+  }
+
+  @PostConstruct
+  public void createSchemaIfRequired() {
     if (!schemaExists())
       createSchema();
   }

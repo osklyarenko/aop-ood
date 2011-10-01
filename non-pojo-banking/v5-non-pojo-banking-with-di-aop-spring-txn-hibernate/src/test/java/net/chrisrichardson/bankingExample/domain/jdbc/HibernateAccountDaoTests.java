@@ -34,7 +34,7 @@ public class HibernateAccountDaoTests extends TestCase {
   protected void setUp() throws Exception {
     ApplicationContext ctx = new ClassPathXmlApplicationContext(
         "appCtx/*.xml");
-    this.dao = (HibernateAccountDao) ctx.getBean("accountDao");
+    this.dao = (HibernateAccountDao) ctx.getBean("hibernateAccountDao");
   }
 
   public void test() throws Exception {

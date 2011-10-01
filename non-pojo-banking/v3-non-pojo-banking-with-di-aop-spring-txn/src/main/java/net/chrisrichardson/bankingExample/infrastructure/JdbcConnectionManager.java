@@ -10,8 +10,11 @@ import javax.sql.DataSource;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.datasource.DataSourceUtils;
+import org.springframework.stereotype.Component;
 
+@Component
 public class JdbcConnectionManager {
 
   private static String[] ddl = {
@@ -23,6 +26,7 @@ public class JdbcConnectionManager {
   private Log logger = LogFactory.getLog(JdbcConnectionManager.class);
   private DataSource dataSource;
 
+  @Autowired
   public JdbcConnectionManager(DataSource dataSource) {
     this.dataSource = dataSource;
     if (!schemaExists())

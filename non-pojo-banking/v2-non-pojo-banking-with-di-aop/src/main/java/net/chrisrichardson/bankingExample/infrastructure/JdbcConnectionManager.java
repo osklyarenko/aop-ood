@@ -10,7 +10,10 @@ import javax.sql.DataSource;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+@Component
 public class JdbcConnectionManager {
 
   private static String[] ddl = {
@@ -23,6 +26,7 @@ public class JdbcConnectionManager {
   private DataSource dataSource;
   private ThreadLocal<Connection> connectionHolder = new ThreadLocal<Connection>();
 
+  @Autowired
   public JdbcConnectionManager(DataSource dataSource) {
     this.dataSource = dataSource;
     if (!schemaExists())

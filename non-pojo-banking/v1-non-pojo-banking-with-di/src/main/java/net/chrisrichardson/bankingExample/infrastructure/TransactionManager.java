@@ -3,10 +3,15 @@ package net.chrisrichardson.bankingExample.infrastructure;
 import java.sql.Connection;
 import java.sql.SQLException;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+@Component
 public class TransactionManager {
 
 	private final JdbcConnectionManager jdbcConnectionManager;
 
+	@Autowired
   public TransactionManager(JdbcConnectionManager jdbcConnectionManager) {
     this.jdbcConnectionManager = jdbcConnectionManager;
   }

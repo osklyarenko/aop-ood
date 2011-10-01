@@ -19,13 +19,17 @@ package net.chrisrichardson.bankingExample.domain.hibernate;
 import net.chrisrichardson.bankingExample.domain.BankingTransaction;
 import net.chrisrichardson.bankingExample.domain.BankingTransactionDao;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate3.HibernateTemplate;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public class HibernateBankingTransactionDao implements
 		BankingTransactionDao {
 
 	private HibernateTemplate hibernateTemplate;
 
+	@Autowired
 	public HibernateBankingTransactionDao(
 			HibernateTemplate hibernateTemplate) {
 		this.hibernateTemplate = hibernateTemplate;

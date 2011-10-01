@@ -34,6 +34,4 @@ public class LoggingAspect extends AbstractOrderedAspect {
     }
   }
 
-
-
 }

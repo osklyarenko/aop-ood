@@ -29,14 +29,18 @@ import net.chrisrichardson.bankingExample.infrastructure.JdbcConnectionManager;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 import org.springframework.util.Assert;
 
+@Repository
 public class JdbcAccountDao implements AccountDao {
 
   private Log logger = LogFactory.getLog(getClass());
 
   private JdbcConnectionManager connectionManager;
 
+  @Autowired
   public JdbcAccountDao(JdbcConnectionManager connectionManager) {
     this.connectionManager = connectionManager;
   }
