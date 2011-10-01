@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beansProjectDescription>
-	<configExtensions>
-		<configExtension>xml</configExtension>
-	</configExtensions>
+	<version>1</version>
+	<pluginVersion><![CDATA[2.2.1.v200811281800]]></pluginVersion>
+	<configSuffixes>
+		<configSuffix><![CDATA[xml]]></configSuffix>
+	</configSuffixes>
+	<enableImports><![CDATA[false]]></enableImports>
 	<configs>
 		<config>src/main/resources/appCtx/banking-hibernate-repositories.xml</config>
 		<config>src/main/resources/appCtx/banking-hsqldb-session-factory.xml</config>
@@ -12,7 +15,7 @@
 	</configs>
 	<configSets>
 		<configSet>
-			<name>all</name>
+			<name><![CDATA[all]]></name>
 			<allowBeanDefinitionOverriding>false</allowBeanDefinitionOverriding>
 			<incomplete>false</incomplete>
 			<configs>

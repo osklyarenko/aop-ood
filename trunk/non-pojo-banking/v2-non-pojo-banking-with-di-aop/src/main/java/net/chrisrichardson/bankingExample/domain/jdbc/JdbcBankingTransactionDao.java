@@ -19,6 +19,9 @@ package net.chrisrichardson.bankingExample.domain.jdbc;
 import net.chrisrichardson.bankingExample.domain.BankingTransaction;
 import net.chrisrichardson.bankingExample.domain.BankingTransactionDao;
 
+import org.springframework.stereotype.Repository;
+
+@Repository
 public class JdbcBankingTransactionDao implements
 		BankingTransactionDao {
 

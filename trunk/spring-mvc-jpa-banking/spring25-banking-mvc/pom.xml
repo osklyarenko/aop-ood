@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    
     <parent>
-        <artifactId>banking</artifactId>
         <groupId>net.chrisrichardson</groupId>
+        <artifactId>banking-jpa-webapp</artifactId>
         <version>1.0-SNAPSHOT</version>
+        <relativePath>../pom.xml</relativePath>
     </parent>
+    
     <modelVersion>4.0.0</modelVersion>
     <groupId>net.chrisrichardson</groupId>
     <artifactId>spring25-banking-mvc</artifactId>
@@ -36,20 +39,38 @@
             <version>1.0-SNAPSHOT</version>
         </dependency>
 
+       <dependency>
+           <groupId>net.chrisrichardson</groupId>
+           <artifactId>umangite-framework</artifactId>
+           <version>1.11</version>
+           <scope>test</scope>
+           <exclusions>
+               <exclusion>
+                   <groupId>org.springframework</groupId>
+                   <artifactId>spring</artifactId>
+               </exclusion>
+               <exclusion>
+                   <groupId>org.springframework</groupId>
+                   <artifactId>spring-mock</artifactId>
+               </exclusion>
+           </exclusions>
+       </dependency>
+
+        <!--  Web app dependencies -->
         <dependency>
-            <groupId>net.chrisrichardson</groupId>
-            <artifactId>umangite-framework</artifactId>
-            <version>1.0</version>
+            <groupId>org.apache.ant</groupId>
+            <artifactId>ant</artifactId>
+            <version>1.7.1</version>
             <scope>test</scope>
         </dependency>
 
-        <!--  Web app dependencies -->
         <dependency>
             <groupId>ant</groupId>
             <artifactId>ant</artifactId>
             <version>1.6.5</version>
             <scope>test</scope>
         </dependency>
+
 
         <dependency>
             <groupId>tomcat</groupId>
@@ -63,14 +84,6 @@
             <artifactId>jasper-compiler</artifactId>
             <version>5.5.12</version>
             <scope>test</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>sun.jdk</groupId>
-            <artifactId>tools</artifactId>
-            <version>1.5.0</version>
-            <scope>system</scope>
-            <systemPath>${java.home}/../lib/tools.jar</systemPath>
         </dependency>
 
         <dependency>
@@ -97,12 +110,10 @@
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-webmvc</artifactId>
-            <version>2.5.3</version>
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
-            <artifactId>spring</artifactId>
-            <version>2.5.3</version>
+            <artifactId>spring-orm</artifactId>
         </dependency>
         <dependency>
             <groupId>displaytag</groupId>

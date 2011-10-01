@@ -16,29 +16,23 @@
 
 package net.chrisrichardson.bankingExample.spring;
 
-import junit.framework.TestCase;
 import net.chrisrichardson.bankingExample.domain.Account;
 import net.chrisrichardson.bankingExample.domain.AccountDao;
 import net.chrisrichardson.bankingExample.domain.AccountMother;
 import net.chrisrichardson.bankingExample.domain.AccountService;
 
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit38.AbstractJUnit38SpringContextTests;
 
-public class SpringAccountServiceTests extends TestCase {
+@ContextConfiguration("/appCtx/*.xml")
+public class SpringAccountServiceTests extends AbstractJUnit38SpringContextTests {
 
+  @Autowired
   private AccountService service;
+  
+  @Autowired
   private AccountDao dao;
-
-  @Override
-  protected void setUp() throws Exception {
-    super.setUp();
-    ApplicationContext ctx = new ClassPathXmlApplicationContext(
-        "appCtx/banking-service.xml");
-    service = (AccountService) ctx
-        .getBean("accountService");
-    this.dao = (AccountDao) ctx.getBean("accountDao");
-  }
 
   private void assertBalance(double expectedBalance, String accountId) {
     assertEquals(expectedBalance, dao.findAccount(accountId)

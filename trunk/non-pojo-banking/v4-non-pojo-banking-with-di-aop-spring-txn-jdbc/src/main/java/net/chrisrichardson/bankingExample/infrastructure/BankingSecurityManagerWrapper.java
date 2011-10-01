@@ -1,6 +1,8 @@
 package net.chrisrichardson.bankingExample.infrastructure;
 
+import org.springframework.stereotype.Component;
 
+@Component
 public class BankingSecurityManagerWrapper {
 
  

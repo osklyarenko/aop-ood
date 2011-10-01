@@ -26,7 +26,10 @@ import net.chrisrichardson.bankingExample.infrastructure.TransactionManager;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class AccountServiceProceduralImpl implements AccountService {
 
   private Log logger = LogFactory.getLog(getClass());
@@ -41,6 +44,7 @@ public class AccountServiceProceduralImpl implements AccountService {
 
   private BankingSecurityManagerWrapper bankingSecurityWrapper;
 
+  @Autowired
   public AccountServiceProceduralImpl(AccountDao accountDao,
       BankingTransactionDao bankingTransactionDao,
       TransactionManager transactionManager, AuditingManager auditingManager,

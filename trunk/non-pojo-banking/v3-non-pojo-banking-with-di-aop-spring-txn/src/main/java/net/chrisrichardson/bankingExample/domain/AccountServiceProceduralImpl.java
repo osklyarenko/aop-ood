@@ -19,6 +19,10 @@ package net.chrisrichardson.bankingExample.domain;
 import java.util.Calendar;
 import java.util.Date;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+@Service
 public class AccountServiceProceduralImpl implements
     AccountService {
 
@@ -26,7 +30,7 @@ public class AccountServiceProceduralImpl implements
 
   private final BankingTransactionDao bankingTransactionDao;
 
-
+  @Autowired
   public AccountServiceProceduralImpl(
       AccountDao accountDao,
       BankingTransactionDao bankingTransactionDao) {

@@ -22,62 +22,51 @@ import net.chrisrichardson.bankingExample.domain.AccountMother;
 import net.chrisrichardson.bankingExample.domain.AccountService;
 import net.chrisrichardson.bankingExample.infrastructure.TransactionManager;
 
-import org.springframework.test.AbstractDependencyInjectionSpringContextTests;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit38.AbstractJUnit38SpringContextTests;
 
+@ContextConfiguration("/appCtx/banking-service.xml")
 public class SpringAccountServiceTests extends
-    AbstractDependencyInjectionSpringContextTests {
+		AbstractJUnit38SpringContextTests {
 
-  private AccountService service;
-  private AccountDao dao;
-  private TransactionManager transactionManager;
+	@Autowired
+	@Qualifier("clientDelegate")
+	private AccountService service;
 
-  public SpringAccountServiceTests() {
-    setAutowireMode(AUTOWIRE_BY_NAME);
-  }
-  
-  @Override
-  protected String[] getConfigLocations() {
-    return new String[] { "appCtx/banking-service.xml" };
-  }
+	@Autowired
+	private AccountDao dao;
+	
+	@Autowired
+	private TransactionManager transactionManager;
 
-  public void setAccountServiceDelegate(AccountService service) {
-    this.service = service;
-  }
+	private void assertBalance(double expectedBalance, String accountId) {
+		assertEquals(expectedBalance, dao.findAccount(accountId).getBalance());
+	}
 
-  public void setAccountDao(AccountDao dao) {
-    this.dao = dao;
-  }
+	public void testTransfer() throws Exception {
+		double fromAccountInitialBalance = 10;
+		double toAccountInitialBalance = 20;
 
-  public void setTransactionManager(TransactionManager transactionManager) {
-    this.transactionManager = transactionManager;
-  }
+		Account fromAccount = AccountMother
+				.makeNoOverdraftAllowedAccount(fromAccountInitialBalance);
+		Account toAccount = AccountMother
+				.makeNoOverdraftAllowedAccount(toAccountInitialBalance);
+		String fromAccountId = fromAccount.getAccountId();
+		String toAccountId = toAccount.getAccountId();
 
-  private void assertBalance(double expectedBalance, String accountId) {
-    assertEquals(expectedBalance, dao.findAccount(accountId).getBalance());
-  }
+		transactionManager.begin();
+		dao.addAccount(fromAccount);
+		dao.addAccount(toAccount);
+		transactionManager.commit();
 
-  public void testTransfer() throws Exception {
-    double fromAccountInitialBalance = 10;
-    double toAccountInitialBalance = 20;
+		service.transfer(fromAccountId, toAccountId, 5);
 
-    Account fromAccount = AccountMother
-        .makeNoOverdraftAllowedAccount(fromAccountInitialBalance);
-    Account toAccount = AccountMother
-        .makeNoOverdraftAllowedAccount(toAccountInitialBalance);
-    String fromAccountId = fromAccount.getAccountId();
-    String toAccountId = toAccount.getAccountId();
-
-    transactionManager.begin();
-    dao.addAccount(fromAccount);
-    dao.addAccount(toAccount);
-    transactionManager.commit();
-
-    service.transfer(fromAccountId, toAccountId, 5);
-
-    transactionManager.begin();
-    assertBalance(fromAccountInitialBalance - 5, fromAccountId);
-    assertBalance(toAccountInitialBalance + 5, toAccountId);
-    transactionManager.commit();
-  }
+		transactionManager.begin();
+		assertBalance(fromAccountInitialBalance - 5, fromAccountId);
+		assertBalance(toAccountInitialBalance + 5, toAccountId);
+		transactionManager.commit();
+	}
 
 }

@@ -19,29 +19,34 @@ package net.chrisrichardson.bankingExample.domain.hibernate;
 import net.chrisrichardson.bankingExample.domain.Account;
 import net.chrisrichardson.bankingExample.domain.AccountDao;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.support.DataAccessUtils;
 import org.springframework.orm.hibernate3.HibernateTemplate;
+import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
+import org.springframework.stereotype.Repository;
 
-public class HibernateAccountDao implements AccountDao {
+@Repository
+public class HibernateAccountDao extends HibernateDaoSupport implements AccountDao {
 
-  private HibernateTemplate hibernateTemplate;
-
+  @Autowired
   public HibernateAccountDao(HibernateTemplate template) {
-    this.hibernateTemplate = template;
+    setHibernateTemplate(template);
   }
 
   public void addAccount(Account account) {
-    hibernateTemplate.save(account);
+    getHibernateTemplate().save(account);
   }
 
+  @Override
   public Account findAccount(final String accountId) {
-    return (Account) DataAccessUtils.uniqueResult(hibernateTemplate
+    return (Account) DataAccessUtils.uniqueResult(getHibernateTemplate()
         .findByNamedQueryAndNamedParam("Account.findAccountByAccountId",
             "accountId", accountId));
   }
 
+  @Override
   public Account findAccountWithOverdraftPolicy(String accountId) {
-    return (Account) DataAccessUtils.uniqueResult(hibernateTemplate
+    return (Account) DataAccessUtils.uniqueResult(getHibernateTemplate()
         .findByNamedQueryAndNamedParam("Account.findAccountByAccountIdWithOverdraftPolicy",
             "accountId", accountId));
   }

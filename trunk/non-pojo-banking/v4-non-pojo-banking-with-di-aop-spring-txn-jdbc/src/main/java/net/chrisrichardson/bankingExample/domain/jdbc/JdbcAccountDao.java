@@ -27,16 +27,20 @@ import net.chrisrichardson.bankingExample.domain.AccountDao;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.stereotype.Repository;
 import org.springframework.util.Assert;
 
+@Repository
 public class JdbcAccountDao implements AccountDao {
 
   private Log logger = LogFactory.getLog(getClass());
 
   private JdbcTemplate jdbcTemplate;
 
+  @Autowired
   public JdbcAccountDao(JdbcTemplate jdbcTemplate) {
     this.jdbcTemplate = jdbcTemplate;
   }

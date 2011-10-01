@@ -27,12 +27,16 @@ import net.chrisrichardson.bankingExample.domain.Account;
 import net.chrisrichardson.bankingExample.domain.AccountDao;
 import net.chrisrichardson.bankingExample.infrastructure.JdbcConnectionManager;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 import org.springframework.util.Assert;
 
+@Repository
 public class JdbcAccountDao implements AccountDao {
 
   private JdbcConnectionManager connectionManager;
 
+  @Autowired
   public JdbcAccountDao(JdbcConnectionManager connectionManager) {
     this.connectionManager = connectionManager;
   }
