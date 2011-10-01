@@ -31,7 +31,9 @@
         <module>non-pojo-banking</module>
         <module>spring-mvc-jpa-banking</module>
         <module>javaconfig-banking</module>
-        <module>spring25-banking</module>        
+		<!-- Not for now
+        <module>spring25-banking</module>  
+     	-->
     </modules>
     
     <properties>
