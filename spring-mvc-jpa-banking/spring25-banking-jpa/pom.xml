@@ -187,13 +187,6 @@
             </exclusions>
         </dependency>
 
-
-        <dependency>
-            <groupId>log4j</groupId>
-            <artifactId>log4j</artifactId>
-            <version>1.2.9</version>
-        </dependency>
-
         <!-- 
             Spring 2.x needs a newer version of asm that appears not to be compatible with cglib
             Hence the exclusions for Hibernate

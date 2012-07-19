@@ -29,8 +29,13 @@
     <modules>
         <module>spring25-banking-mvc</module>
         <module>spring25-banking-jpa</module>
+        <module>spring25-banking-rest</module>
     </modules>
 
+	<properties>
+		<spring.framework.version>3.1.0.RELEASE</spring.framework.version>
+	</properties>
+	
     <build>
         <plugins>
             <plugin>

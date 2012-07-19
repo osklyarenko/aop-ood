@@ -28,6 +28,8 @@ public interface MoneyTransferService {
 
 	List<Account> findAccounts();
 
-  void addAccount(String accountId, double balance, OverdraftPolicy overdraftPolicy);
+  Account addAccount(String accountId, double balance, OverdraftPolicy overdraftPolicy);
+
+  Account findAccountByid(String accountId);
 
 }
