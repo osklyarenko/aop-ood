@@ -29,10 +29,11 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 
 @Entity
-@Table(name="BANK_ACCOUNT")	
+@Table(name="BANK_ACCOUNT", uniqueConstraints=@UniqueConstraint(columnNames="accountId"))	
 @NamedQueries({
 	@NamedQuery(name="Account.findAccountByAccountId", query="select a from Account a where a.accountId = :accountId"),
 	@NamedQuery(name="Account.findAll", query="select a from Account a")

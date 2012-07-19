@@ -36,6 +36,7 @@ public class MoneyTransferServiceImpl implements MoneyTransferService {
 		this.bankingTransactionRepository = bankingTransactionRepository;
 	}
 
+	@Override
 	public BankingTransaction transfer(String fromAccountId,
 			String toAccountId, double amount) throws MoneyTransferException {
 		Account fromAccount = accountRepository.findAccount(fromAccountId);
@@ -48,13 +49,22 @@ public class MoneyTransferServiceImpl implements MoneyTransferService {
 		return txn;
 	}
 
+	@Override
 	public List<Account> findAccounts() {
 		return accountRepository.findAccounts();
 	}
 
-  public void addAccount(String accountId, double balance,
+	@Override
+  public Account addAccount(String accountId, double balance,
       OverdraftPolicy overdraftPolicy) {
-    accountRepository.addAccount(new Account(accountId, balance, overdraftPolicy));
+    Account account = new Account(accountId, balance, overdraftPolicy);
+    accountRepository.addAccount(account);
+    return account;
+  }
+
+  @Override
+  public Account findAccountByid(String accountId) {
+    return accountRepository.findAccount(accountId);
   }
 
 }
