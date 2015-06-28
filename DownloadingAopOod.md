@@ -1,0 +1,1 @@
+You currently need to access the source via [subversion](http://code.google.com/p/aop-ood/source/checkout)
